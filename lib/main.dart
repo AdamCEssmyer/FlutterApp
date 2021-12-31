@@ -14,34 +14,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
     return MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Welcome to Flutter'),
         ),
-        body: Center(
-          child: Text(wordPair.asPascalCase),
+        body: const Center(
+          child: RandomWords(),
         ),
       ),
     );
   }
 }
 
-
-class  extends StatefulWidget {
-  const ({ Key? key }) : super(key: key);
-
-  @override
-  _State createState() => _State();
-}
-
-class _State extends State<> {
+// #docregion _RandomWordsState, RWS-class-only
+class _RandomWordsState extends State<RandomWords> {
+  // #enddocregion RWS-class-only
+  final _suggestions = <WordPair>[];
+  final _biggerFont = TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    final wordPair = WordPair.random();
+    return Text(wordPair.asPascalCase);
   }
+  // #docregion RWS-class-only
+}
+// #enddocregion _RandomWordsState, RWS-class-only
+
+// #docregion RandomWords
+class RandomWords extends StatefulWidget {
+  const RandomWords({Key? key}) : super(key: key);
+
+  @override
+  State<RandomWords> createState() => _RandomWordsState();
 }
